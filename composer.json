@@ -1,0 +1,23 @@
+{
+    "name": "worldvisual/easy",
+    "description": "Mini framework para facilitar a vida na criação de projetos.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel Prado",
+            "email": "samuelprado.a@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "monolog/monolog": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EASY\\": "src/"
+        },
+        "files": [
+            "functions/Connect.php"
+        ]
+    }
+}
