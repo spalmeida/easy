@@ -20,5 +20,7 @@
         "files": [
             "functions/Connect.php"
         ]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
