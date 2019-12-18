@@ -34,3 +34,11 @@ Retorno por id
 ```php
 $query->selectById('table', '1');
 ```
+Inserir informações no banco
+```php
+$query->Query('table', $array, 'insert');
+```
+Atualizar informações do banco
+```php
+$query->Query('table', $array, 'update', 'id=1');
+```
