@@ -1,7 +1,14 @@
 # EASY
 Mini framework para facilitar a vida na criação de projetos.
 ## INSTALL
-``` composer require worldvisual/easy```
+##### composer package
+```
+$ composer require worldvisual/easy
+```
+##### Projeto
+```
+$ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
+```
 ### GET STARTED
 ```php
 // na index do seu projeto use
@@ -18,27 +25,33 @@ $conn = $connect->conn('hostname','username', 'password','db_name');
 $query = new Query($conn);
 ```
 ## USING
-Listar todos os registro de uma determinada tabela
+##### - Listar todos os registro de uma determinada tabela
 ```php
 $query->selectAll('table');
 ```
-Listar registro com alguma condição
+------------
+##### - Listar registro com alguma condição
 ```php
 $query->selectWhere('table', 'id=1');
 ```
-O retorno da lista não se repete (DISTINCT)
+------------
+##### - O retorno da lista não se repete (DISTINCT)
 ```php
 $query->selectWhere('column1, column2', 'table', 'id=1');
 ```
-Retorno por id
+------------
+##### - Retorno por id
 ```php
 $query->selectById('table', '1');
 ```
-Inserir informações no banco
+------------
+
+##### - Inserir Informações No Banco
 ```php
 $query->Query('table', $array, 'insert');
 ```
-Atualizar informações do banco
+------------
+##### - Atualizar informações do banco
 ```php
 $query->Query('table', $array, 'update', 'id=1');
 ```
