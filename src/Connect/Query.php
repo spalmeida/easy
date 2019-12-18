@@ -4,7 +4,7 @@ namespace EASY;
 
 class Query{
 
-	private $conn;
+	public $conn;
 
 	function __construct($conn){
 		$this->conn = $conn;
@@ -32,14 +32,14 @@ class Query{
 
 	public function selectWhere($table, $where,  $convert = 'array'){
 
-		$stmt = $this->prepare("SELECT * FROM $table WHERE $where");
+		$stmt = $this->conn->prepare("SELECT * FROM $table WHERE $where");
 		$stmt->execute();
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
-	public function selectWhereDist($table,$dist, $where,  $convert = 'array'){
+	public function selectWhereDist($table,$dist, $where){
 
-		$stmt = $this->prepare("SELECT DISTINCT $dist FROM $table WHERE $where");
+		$stmt = $this->conn->prepare("SELECT DISTINCT $dist FROM $table WHERE $where");
 		$stmt->execute();
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
@@ -53,7 +53,7 @@ class Query{
 
 	public function selectById($table, $id, $convert = 'array'){
 
-		$stmt = $this->prepare("SELECT * FROM $table WHERE id = ?");
+		$stmt = $this->conn->prepare("SELECT * FROM $table WHERE id = ?");
 		$stmt->bindParam(1, $id, \PDO::PARAM_INT);
 		$stmt->execute([$id]);
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@ class Query{
 
 	public function deletebyId($table ,$id){
 
-		$stmt = $this->prepare("DELETE FROM $table WHERE id = :ID");
+		$stmt = $this->conn->prepare("DELETE FROM $table WHERE id = :ID");
 
 		$stmt->bindParam(":ID", $id);
 
@@ -77,37 +77,37 @@ class Query{
 	 * @param $convert = array, json or debug
 	*/
 
-	public function selectAll($table, $convert = 'array'){
+	public function selectAll($table){
 
-		$stmt = $this->prepare("SELECT * FROM $table");
+		$stmt = $this->conn->prepare("SELECT * FROM $table");
 		$stmt->execute();
 
-		return self::convert($stmt->fetchAll(\PDO::FETCH_ASSOC), $convert);
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 	}
 
-	public	function Data($select,$type){
+	private	function data($select,$type){
 
 		if($type == 'fetch'){
 
-			$select = $this->prepare($select);
+			$select = $this->conn->prepare($select);
 			$select->execute();
 			$info = $select->fetch();
 
 		}else if($type == 'fetchAll'){
 
-			$select = $this->prepare($select);
+			$select = $this->conn->prepare($select);
 			$select->execute();
 			$info = $select->fetchAll(\PDO::FETCH_ASSOC);
 
 		}else if($type == 'insert'){
 
-			$select = $this->prepare($select);
+			$select = $this->conn->prepare($select);
 			$info = $select->execute();
 
 		}else if($type == 'update'){
 
-			$select = $this->prepare($select);
+			$select = $this->conn->prepare($select);
 			$info = $select->execute();
 
 		}
@@ -115,14 +115,14 @@ class Query{
 		return $info;
 	}
 
-	public function magicSelect($table){
+	private function magicSelect($table){
 
 		$select = "DESCRIBE $table";
-		return self::Data($select,"fetchAll");
+		return self::data($select,"fetchAll");
 
 	}
 
-	public function findTable($table){
+	private function findTable($table){
 
 		$search = self::magicSelect($table);
 		$count  = count($search);
@@ -156,40 +156,6 @@ class Query{
 		} 
 		return $text; 
 	}*/
-
-	public function prepareArray($array){
-
-		$count 		= count($array);
-		$fieldA 	= "";
-		$fieldB 	= "";
-		$field  	= "";
-
-		foreach ($tableInfo as $index => $value) {
-
-			if($index+1 < $count){
-
-				$fieldA .= $value . ", ";
-				$fieldB .= ":".strtoupper($value).", ";
-				$fieldAarray[] = $value;
-				$fieldBarray[] = ":".strtoupper($value);
-
-			}else{
-
-				$fieldA .= $value;
-				$fieldB .= ":".strtoupper($value);
-				$fieldAarray[] = $value;
-				$fieldBarray[] = ":".strtoupper($value);
-			}
-		}
-
-		return array(
-			'fieldA'      => $fieldA,
-			'fieldB'      => $fieldB,
-			'fieldAarray' => $fieldAarray,
-			'fieldBarray' => $fieldBarray
-		);
-
-	}
 
 	public function Query($table, $array, $type, $where){
 
@@ -230,9 +196,9 @@ class Query{
 			:COLUMN01, :COLUMN02, :COLUMN03
 
 			final example
-			$stmt = $this->prepare("INSERT INTO $table (column01, column02, column03) VALUES (:COLUMN01, :COLUMN02, :COLUMN03) $where");
+			$stmt = $this->conn->prepare("INSERT INTO $table (column01, column02, column03) VALUES (:COLUMN01, :COLUMN02, :COLUMN03) $where");
 			*/
-			$stmt = $this->prepare("INSERT INTO $table ($fieldA) VALUES ($fieldB) $where");
+			$stmt = $this->conn->prepare("INSERT INTO $table ($fieldA) VALUES ($fieldB) $where");
 
 			for ($i=0; $i < count($fieldAarray) ; $i++) {
 
@@ -283,11 +249,11 @@ class Query{
 			column01, column02, column03
 
 			final example
-			$stmt = $this->prepare("UPDATE $table SET column01 = :COLUMN01 , column02 = :COLUMN02, column03 = :COLUMN03 WHERE $where");
+			$stmt = $this->conn->prepare("UPDATE $table SET column01 = :COLUMN01 , column02 = :COLUMN02, column03 = :COLUMN03 WHERE $where");
 
 			*/
 
-			$stmt = $this->prepare("UPDATE $table SET $field WHERE $where");
+			$stmt = $this->conn->prepare("UPDATE $table SET $field WHERE $where");
 
 
 			for ($i=0; $i < count($fieldAarray) ; $i++) {
@@ -314,25 +280,11 @@ class Query{
 
 	}
 
-	public function Query_fix($type, $column, $table, $value, $id){
+	public function selectByDate($table, $column, $start, $end, $condition){
 
-		if($type == "update"){
+		$query = "SELECT * FROM $table WHERE $column BETWEEN DATE('$start') AND DATE('$end')";
 
-			$stmt = $this->prepare("UPDATE $table SET $column = $value WHERE id = :ID");
-			$stmt->bindParam(":ID", $id);
-			$stmt->execute();
-
-			return;
-
-		}
-
-	}
-
-	public function SelectByDate($table, $column, $start, $end, $condition){
-
-		$query = "SELECT * FROM $table WHERE $column BETWEEN DATE('$start') AND DATE('$end') AND $condition";
-
-		return self::Data($query,"fetchAll");
+		return self::data($query,"fetchAll");
 
 	}
 
