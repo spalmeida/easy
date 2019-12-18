@@ -2,6 +2,11 @@
 
 require_once '../vendor/autoload.php';
 
-echo '<pre>';
-print_r(query()::selectAll('assinante'));
-echo '</pre>';
+
+use EASY\Connect;
+use EASY\Query;
+
+$conn  = new Connect('localhost','root', '','intermez_system');
+$query = new Query($conn);
+
+var_dump($query);

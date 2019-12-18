@@ -4,6 +4,12 @@ namespace EASY;
 
 class Query{
 
+	private $conn;
+
+	function __construct($conn){
+		$this->conn = $conn;
+	}
+
 	/**
 	 * @method selectWhere
 	 * @param $table
@@ -26,14 +32,14 @@ class Query{
 
 	public function selectWhere($table, $where,  $convert = 'array'){
 
-		$stmt = conn()->prepare("SELECT * FROM $table WHERE $where");
+		$stmt = $this->prepare("SELECT * FROM $table WHERE $where");
 		$stmt->execute();
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
 	public function selectWhereDist($table,$dist, $where,  $convert = 'array'){
 
-		$stmt = conn()->prepare("SELECT DISTINCT $dist FROM $table WHERE $where");
+		$stmt = $this->prepare("SELECT DISTINCT $dist FROM $table WHERE $where");
 		$stmt->execute();
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
@@ -47,7 +53,7 @@ class Query{
 
 	public function selectById($table, $id, $convert = 'array'){
 
-		$stmt = conn()->prepare("SELECT * FROM $table WHERE id = ?");
+		$stmt = $this->prepare("SELECT * FROM $table WHERE id = ?");
 		$stmt->bindParam(1, $id, \PDO::PARAM_INT);
 		$stmt->execute([$id]);
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -55,7 +61,7 @@ class Query{
 
 	public function deletebyId($table ,$id){
 
-		$stmt = conn()->prepare("DELETE FROM $table WHERE id = :ID");
+		$stmt = $this->prepare("DELETE FROM $table WHERE id = :ID");
 
 		$stmt->bindParam(":ID", $id);
 
@@ -73,7 +79,7 @@ class Query{
 
 	public function selectAll($table, $convert = 'array'){
 
-		$stmt = conn()->prepare("SELECT * FROM $table");
+		$stmt = $this->prepare("SELECT * FROM $table");
 		$stmt->execute();
 
 		return self::convert($stmt->fetchAll(\PDO::FETCH_ASSOC), $convert);
@@ -84,24 +90,24 @@ class Query{
 
 		if($type == 'fetch'){
 
-			$select = conn()->prepare($select);
+			$select = $this->prepare($select);
 			$select->execute();
 			$info = $select->fetch();
 
 		}else if($type == 'fetchAll'){
 
-			$select = conn()->prepare($select);
+			$select = $this->prepare($select);
 			$select->execute();
 			$info = $select->fetchAll(\PDO::FETCH_ASSOC);
 
 		}else if($type == 'insert'){
 
-			$select = conn()->prepare($select);
+			$select = $this->prepare($select);
 			$info = $select->execute();
 
 		}else if($type == 'update'){
 
-			$select = conn()->prepare($select);
+			$select = $this->prepare($select);
 			$info = $select->execute();
 
 		}
@@ -224,9 +230,9 @@ class Query{
 			:COLUMN01, :COLUMN02, :COLUMN03
 
 			final example
-			$stmt = conn()->prepare("INSERT INTO $table (column01, column02, column03) VALUES (:COLUMN01, :COLUMN02, :COLUMN03) $where");
+			$stmt = $this->prepare("INSERT INTO $table (column01, column02, column03) VALUES (:COLUMN01, :COLUMN02, :COLUMN03) $where");
 			*/
-			$stmt = conn()->prepare("INSERT INTO $table ($fieldA) VALUES ($fieldB) $where");
+			$stmt = $this->prepare("INSERT INTO $table ($fieldA) VALUES ($fieldB) $where");
 
 			for ($i=0; $i < count($fieldAarray) ; $i++) {
 
@@ -277,11 +283,11 @@ class Query{
 			column01, column02, column03
 
 			final example
-			$stmt = conn()->prepare("UPDATE $table SET column01 = :COLUMN01 , column02 = :COLUMN02, column03 = :COLUMN03 WHERE $where");
+			$stmt = $this->prepare("UPDATE $table SET column01 = :COLUMN01 , column02 = :COLUMN02, column03 = :COLUMN03 WHERE $where");
 
 			*/
 
-			$stmt = conn()->prepare("UPDATE $table SET $field WHERE $where");
+			$stmt = $this->prepare("UPDATE $table SET $field WHERE $where");
 
 
 			for ($i=0; $i < count($fieldAarray) ; $i++) {
@@ -312,7 +318,7 @@ class Query{
 
 		if($type == "update"){
 
-			$stmt = conn()->prepare("UPDATE $table SET $column = $value WHERE id = :ID");
+			$stmt = $this->prepare("UPDATE $table SET $column = $value WHERE id = :ID");
 			$stmt->bindParam(":ID", $id);
 			$stmt->execute();
 
