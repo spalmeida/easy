@@ -17,7 +17,7 @@ $conn = $connect->conn('hostname','username', 'password','db_name');
 //classe destinada a interação com banco de dados
 $query = new Query($conn);
 ```
-##USING
+## USING
 Listar todos os registro de uma determinada tabela
 ```php
 $query->selectAll('table');
