@@ -12,7 +12,7 @@ $ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
 ### GET STARTED
 ```php
 // na index do seu projeto use
-require_once 'vendor/autoload.php'
+require_once 'vendor/autoload.php';
 
 use EASY\Connect;
 use EASY\Query;
