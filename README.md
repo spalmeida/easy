@@ -3,11 +3,11 @@ Mini framework para facilitar a vida na criação de projetos.
 ## INSTALL
 ##### composer package
 ```
-composer require worldvisual/easy
+$ composer require worldvisual/easy
 ```
 ##### Projeto
 ```
-composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
+$ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
 ```
 ### GET STARTED
 ```php
