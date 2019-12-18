@@ -30,7 +30,7 @@ class Query{
 
 	}
 
-	public function selectWhere($table, $where,  $convert = 'array'){
+	public function selectWhere($table, $where){
 
 		$stmt = $this->conn->prepare("SELECT * FROM $table WHERE $where");
 		$stmt->execute();
@@ -48,10 +48,9 @@ class Query{
 	 * @method selectById
 	 * @param $table
 	 * @param $id
-	 * @param $convert = array, json or debug
 	*/
 
-	public function selectById($table, $id, $convert = 'array'){
+	public function selectById($table, $id){
 
 		$stmt = $this->conn->prepare("SELECT * FROM $table WHERE id = ?");
 		$stmt->bindParam(1, $id, \PDO::PARAM_INT);
@@ -74,7 +73,6 @@ class Query{
 	/**
 	 * @method selectAll
 	 * @param $table
-	 * @param $convert = array, json or debug
 	*/
 
 	public function selectAll($table){
