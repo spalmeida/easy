@@ -10,7 +10,6 @@
     ],
     "require": {
         "php": ">=7.2",
-        "worldvisual/easy": "^1.0",
         "monolog/monolog": "^2.0"
     },
     "autoload": {
