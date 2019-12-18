@@ -30,7 +30,7 @@ $query = new Query($conn);
 //print_r($query->selectById('table', '1'));
 //echo '</pre>';
 
-//inserir informações no banco
+//Inserir informações no banco
 //echo '<pre>';
 //print_r($query->Query('table', $array, 'insert'));
 //echo '</pre>';
