@@ -44,7 +44,7 @@ $ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
  'resource' => 'default'
 ```
 ## ROUTES
-Você pode definir suas rotas em (routes/web.php) para mais informações você pode consultar em  **[NEZAMY - ROUTE](https://nezamy.com/route "nezamy")** -- **[GIT](https://github.com/nezamy/route "GIT")**
+Você pode definir suas rotas em (routes/web.php) para mais informações você pode consultar em  **[NEZAMY](https://nezamy.com/route "nezamy")** - **[GIT](https://github.com/nezamy/route "GIT")**
 ## VIEWS
 use em( public/themes/*SEU_TEMA*) | definido em config.inc
 ## LAYOUT
