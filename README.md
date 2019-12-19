@@ -1,4 +1,7 @@
-# EASY 
+
+<h1 align="center"><b>EASY</b></h1>
+<p align="center">Mini framework para facilitar a vida na criação de projetos.</p>
+
 <p align="center">
  <img src="https://img.shields.io/github/stars/worldvisual/easy.svg" alt="Stars">
  <img src="https://img.shields.io/github/forks/worldvisual/easy.svg" alt="Forks">
@@ -9,8 +12,6 @@
  <img src="https://poser.pugx.org/worldvisual/easy/license.svg" alt="License">
 </p>
 
-
-Mini framework para facilitar a vida na criação de projetos.
 ## INSTALL
 
 ##### Projeto
