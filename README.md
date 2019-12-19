@@ -1,29 +1,66 @@
-# EASY
-Mini framework para facilitar a vida na criação de projetos.
+
+<h1 align="center"><b>EASY</b></h1>
+<p align="center">Mini framework para facilitar a vida na criação de projetos.</p>
+
+<p align="center">
+ <img src="https://img.shields.io/github/stars/worldvisual/easy.svg" alt="Stars">
+ <img src="https://img.shields.io/github/forks/worldvisual/easy.svg" alt="Forks">
+ <img src="https://img.shields.io/github/tag/worldvisual/easy.svg" alt="Tag">
+ <img src="https://img.shields.io/github/issues/worldvisual/easy.svg" alt="Issues"> 
+ <img src="https://poser.pugx.org/worldvisual/easy/d/total.svg" alt="Total Downloads">
+ <img src="https://poser.pugx.org/worldvisual/easy/v/stable.svg" alt="Latest Stable Version">
+ <img src="https://poser.pugx.org/worldvisual/easy/license.svg" alt="License">
+</p>
+
 ## INSTALL
-##### composer package
-```
-$ composer require worldvisual/easy
-```
+
 ##### Projeto
 ```
 $ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
 ```
 ### GET STARTED
 ```php
-// na index do seu projeto use
-require_once 'vendor/autoload.php'
+// DIR -> (app/config.inc.php)
 
-use EASY\Connect;
-use EASY\Query;
+/**
+ * DATABASE CONNECTION
+ */
 
-//efetua a conexão com banco de dados
-$connect  = new Connect();
-$conn = $connect->conn('hostname','username', 'password','db_name');
+ 'hostname' => 'localhost',
+ 'username' => 'root',
+ 'password' => '',
+ 'database' => 'easy',
 
-//classe destinada a interação com banco de dados
-$query = new Query($conn);
+ /**
+ * SITENAME
+ * -- host:  yoursite.com.br or yoursite.com.br/sub
+ * -- local: localhost or localhost/sub
+ */
+
+ 'sitename' => 'localhost',
+
+ /**
+ * PROTOCOL
+ * http://
+ * https://
+ */
+
+ 'protocol' => 'http://',
+
+ /**
+ * THEME AND RESOURCES
+ */
+
+ 'themedir' => 'default',
+ 'template' => 'default',
+ 'resource' => 'default'
 ```
+## ROUTES
+Você pode definir suas rotas em (routes/web.php) para mais informações você pode consultar em  **[NEZAMY](https://nezamy.com/route "nezamy")** - **[GIT](https://github.com/nezamy/route "GIT")**
+## VIEWS
+use em( public/themes/*SEU_TEMA*) | definido em config.inc
+## LAYOUT
+use em (public/__templates/*SEU_TEMPLATE*) | definido em config.inc 
 ## USING
 ##### - Listar todos os registro de uma determinada tabela
 ```php
