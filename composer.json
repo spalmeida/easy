@@ -16,8 +16,12 @@
     "autoload": {
         "psr-4": {
             "EASY\\": "src/"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+        },
+        "files": [
+            "app/functions/init.php",
+            "app/config.inc.php"
+        ]
+},
+"minimum-stability": "dev",
+"prefer-stable": true
 }
