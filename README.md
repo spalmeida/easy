@@ -1,9 +1,8 @@
+# EASY
 ![](https://img.shields.io/github/stars/worldvisual/easy.svg) 
 ![](https://img.shields.io/github/forks/worldvisual/easy.svg) 
 ![](https://img.shields.io/github/tag/worldvisual/easy.svg) 
 ![](https://img.shields.io/github/issues/worldvisual/easy.svg)
-
-# EASY
 Mini framework para facilitar a vida na criação de projetos.
 ## INSTALL
 
