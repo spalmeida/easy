@@ -4,7 +4,6 @@
  <img src="https://img.shields.io/github/forks/worldvisual/easy.svg" alt="Forks">
  <img src="https://img.shields.io/github/tag/worldvisual/easy.svg" alt="Tag">
  <img src="https://img.shields.io/github/issues/worldvisual/easy.svg" alt="Issues"> 
- <img src="https://img.shields.io/github/release/worldvisual/easy.svg" alt="releases">
  <img src="https://poser.pugx.org/worldvisual/easy/d/total.svg" alt="Total Downloads">
  <img src="https://poser.pugx.org/worldvisual/easy/v/stable.svg" alt="Latest Stable Version">
  <img src="https://poser.pugx.org/worldvisual/easy/license.svg" alt="License">
