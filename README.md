@@ -1,5 +1,8 @@
-
-<h1 align="center"><b>EASY</b></h1>
+<h1 align="center"> 
+<img  src="https://visualpharm.com/assets/311/Easy-595b40b85ba036ed117dc0a2.svg" width="200" alt="Easy">
+<br>
+<b>EASY</b>
+</h1>
 <p align="center">Mini framework para facilitar a vida na criação de projetos.</p>
 
 <p align="center">
