@@ -20,6 +20,8 @@
 ##### Projeto
 ```
 $ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
+$ cd SEU_PROJETO
+$ composer dump-autoload -o
 ```
 ### GET STARTED
 ```php
