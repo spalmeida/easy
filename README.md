@@ -1,4 +1,3 @@
-
 <h1 align="center"> 
 <img  src="https://visualpharm.com/assets/311/Easy-595b40b85ba036ed117dc0a2.svg" width="200" alt="Easy">
 <br>
