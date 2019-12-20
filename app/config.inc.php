@@ -17,7 +17,7 @@ define('CONFIG', array(
  * -- local: localhost or localhost/sub
  */
 
- 'sitename' => 'localhost',
+ 'sitename' => 'localhost/easy',
 
  /**
  * PROTOCOL
@@ -33,6 +33,12 @@ define('CONFIG', array(
 
  'themedir' => 'default',
  'template' => 'default',
- 'resource' => 'default'
+ 'resource' => 'default',
+
+ /**
+ * ASSETS VERSION
+ */
+
+ 'versionAssets' => '1'
 
 ));
