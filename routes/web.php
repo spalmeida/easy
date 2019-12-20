@@ -1,6 +1,6 @@
 <?php
 
-$route->get('/teste', function(){
+$route->get(['', 'home', 'index', 'teste/teste'], function(){
 
-	return view('home');
+	return view('home', $param ='apenas um teste');
 });

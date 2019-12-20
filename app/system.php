@@ -10,7 +10,6 @@ require_once 'vendor/autoload.php';
 use EASY\Connect;
 use EASY\Query;
 
-
 $connect  = new Connect();
 $conn = $connect->conn(CONFIG['hostname'],CONFIG['username'], CONFIG['password'],CONFIG['database']);
 
