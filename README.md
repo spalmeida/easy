@@ -1,5 +1,5 @@
 <h1 align="center"> 
-<img  src="https://visualpharm.com/assets/311/Easy-595b40b85ba036ed117dc0a2.svg" width="200" alt="Easy">
+<img  src="https://github.com/worldvisual/easy/blob/master/easy.svg" width="200" alt="Easy">
 <br>
 <b>EASY</b>
 </h1>
@@ -20,6 +20,8 @@
 ##### Projeto
 ```
 $ composer create-project --prefer-dist worldvisual/easy SEU_PROJETO
+$ cd SEU_PROJETO
+$ composer dump-autoload -o
 ```
 ### GET STARTED
 ```php
