@@ -95,5 +95,5 @@ $query->Query('table', $array, 'insert');
 ------------
 ##### - Atualizar informações do banco
 ```php
-$query->Query('table', $array, 'update', 'id=1');
+$query->Query('table', $array, 'update', 'id=1'); ..
 ```
